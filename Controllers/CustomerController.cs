@@ -30,11 +30,13 @@ namespace customercrud.Controllers
             return customers;
         }
 
+        // POST: api/customer
         [HttpPost]
         [Route("")]
-        public void Customer([FromBody]Customer customer)
+        public Customer Customer([FromBody]Customer customer)
         {
             context.Customers.InsertOne(customer);
+            return customer;
         }
     }
 }
