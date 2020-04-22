@@ -36,3 +36,9 @@
 /home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/System.ComponentModel.Annotations.dll
 /home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/System.Diagnostics.DiagnosticSource.dll
 /home/michel/Projects/WebApi/customercrud/obj/Debug/netcoreapp3.1/customercrud.csproj.CopyComplete
+/home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/DnsClient.dll
+/home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/MongoDB.Bson.dll
+/home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/MongoDB.Driver.dll
+/home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/MongoDB.Driver.Core.dll
+/home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/MongoDB.Libmongocrypt.dll
+/home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/SharpCompress.dll

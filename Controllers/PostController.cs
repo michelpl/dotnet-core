@@ -11,30 +11,31 @@ namespace customercrud.Controllers
 {
     [ApiController]
     [Produces("application/json")]
-    [Route("v1/customers")]
-    public class CustomerController : Controller
+    [Route("v1/posts")]
+    public class PostController : Controller
     {
         private Context context;
 
-        public CustomerController()
+        public PostController()
         {
             context = new Context();
         }
 
-        // GET: api/customer
+        // GET: api/Post
         [HttpGet]
         [Route("")]
-        public IEnumerable<Customer> Get()
+        public IEnumerable<Post> Get()
         {
-            var customers = context.Customers.Find(_ => true).ToList();
-            return customers;
+            var posts = context.Posts.Find(_ => true).ToList();
+            return posts;
         }
 
         [HttpPost]
         [Route("")]
-        public void Customer([FromBody]Customer customer)
+        public void Post([FromBody]Post post)
         {
-            context.Customers.InsertOne(customer);
+            context.Posts.InsertOne(post);
+
         }
     }
 }

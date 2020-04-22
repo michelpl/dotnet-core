@@ -1,11 +1,17 @@
+using MongoDB.Bson.Serialization.Attributes;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 namespace customercrud.Models
 {
-    public class Customer 
+    public class Customer
     {
-        [Key]
-        public int Id { get; set; }
+        [BsonId]
+        [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
+        public string Id { get; set; }
 
         //Firstname 
         [Required(ErrorMessage = "Required field")]
