@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,6 @@ namespace customercrud.Controllers
             context = new Context();
         }
 
-        // GET: api/customer
         [HttpGet]
         [Route("")]
         public IEnumerable<Customer> Get()
@@ -30,13 +30,39 @@ namespace customercrud.Controllers
             return customers;
         }
 
-        // POST: api/customer
         [HttpPost]
         [Route("")]
-        public Customer Customer([FromBody]Customer customer)
+        public Customer Post([FromBody]Customer customer)
         {
             context.Customers.InsertOne(customer);
             return customer;
+        }
+
+        [HttpGet]
+        [Route("{id:length(24)}")]
+        public IEnumerable<Customer> GetById(string id)
+        {
+
+            var customer = context.Customers.Find(Builders<Customer>.Filter.Eq("Id", id)).ToList();
+            //context.Customers.Find(customer => customer.Id == id).ToList();
+            return customer;
+        }
+
+        [HttpPut("{id:length(24)}")]
+        public void Put(string id, [FromBody]Customer customer)
+        {
+            var filter = Builders<Customer>.Filter.Eq(s => s.Id, id);
+            var update = Builders<Customer>.Update
+                            .Set(s => s.Firstname, customer.Firstname)
+                            .Set(s => s.Lastname, customer.Lastname);
+
+            context.Customers.UpdateOne(filter, update);
+        }
+
+        [HttpDelete("{id:length(24)}")]
+        public void Delete(string id)
+        {
+            context.Customers.DeleteOneAsync(Builders<Customer>.Filter.Eq("Id", id));
         }
     }
 }
