@@ -47,6 +47,18 @@
             "MongoDB.Driver.Core": {
               "target": "Package",
               "version": "[2.10.3, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[106.10.1, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.3.3, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[5.3.3, )"
             }
           },
           "imports": [

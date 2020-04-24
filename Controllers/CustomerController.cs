@@ -24,6 +24,9 @@ namespace customercrud.Controllers
 
         [HttpGet]
         [Route("")]
+        [ProducesResponseType(typeof(IEnumerable<Customer>), 200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
         public IEnumerable<Customer> Get()
         {
             var customers = context.Customers.Find(_ => true).ToList();
@@ -60,6 +63,9 @@ namespace customercrud.Controllers
         }
 
         [HttpDelete("{id:length(24)}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
         public void Delete(string id)
         {
             context.Customers.DeleteOneAsync(Builders<Customer>.Filter.Eq("Id", id));
