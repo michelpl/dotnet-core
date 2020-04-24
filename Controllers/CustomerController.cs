@@ -5,21 +5,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using customercrud.Models;
-using customercrud.Data;
+using customercrud.Data.Interfaces;
 using MongoDB.Driver;
 
 namespace customercrud.Controllers
 {
-    [ApiController]
     [Produces("application/json")]
     [Route("v1/customers")]
-    public class CustomerController : Controller
+    public class CustomerController : ControllerBase
     {
-        private Context context;
+        private ICustomerRepository CustomerRepository;
 
-        public CustomerController()
+        public CustomerController(ICustomerRepository customerRepository)
         {
-            context = new Context();
+            this.CustomerRepository = customerRepository;
         }
 
         [HttpGet]
@@ -27,48 +26,67 @@ namespace customercrud.Controllers
         [ProducesResponseType(typeof(IEnumerable<Customer>), 200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public IEnumerable<Customer> Get()
+        public IActionResult ListCustomers()
         {
-            var customers = context.Customers.Find(_ => true).ToList();
-            return customers;
+            var customers = this.CustomerRepository.ListCustomers();
+            return Ok(customers);
         }
 
         [HttpPost]
         [Route("")]
-        public Customer Post([FromBody]Customer customer)
+        public IActionResult CreateCustomer([FromBody]Customer customer)
         {
-            context.Customers.InsertOne(customer);
-            return customer;
+            this.CustomerRepository.CreateCustomer(customer);
+            return Ok();
         }
 
         [HttpGet]
         [Route("{id:length(24)}")]
-        public IEnumerable<Customer> GetById(string id)
+        public IActionResult GetCustomer(string id)
         {
+            var customer = this.CustomerRepository.GetCustomer(id);
 
-            var customer = context.Customers.Find(Builders<Customer>.Filter.Eq("Id", id)).ToList();
-            //context.Customers.Find(customer => customer.Id == id).ToList();
-            return customer;
+            if (customer == null) 
+            {
+                return NotFound();
+            }
+
+            return Ok(customer);
+            
         }
 
         [HttpPut("{id:length(24)}")]
-        public void Put(string id, [FromBody]Customer customer)
+        public IActionResult UpdateCustomer(string id, [FromBody]Customer customer)
         {
-            var filter = Builders<Customer>.Filter.Eq(s => s.Id, id);
-            var update = Builders<Customer>.Update
-                            .Set(s => s.Firstname, customer.Firstname)
-                            .Set(s => s.Lastname, customer.Lastname);
+            var oldCustomer = this.CustomerRepository.GetCustomer(id);
 
-            context.Customers.UpdateOne(filter, update);
+            if (oldCustomer == null) 
+            {
+                return NotFound();
+            }
+
+            customer.Id = id;
+            this.CustomerRepository.UpdateCustomer(customer);
+
+            return Ok(customer);
         }
 
         [HttpDelete("{id:length(24)}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public void Delete(string id)
+        public IActionResult DeleteCustomer(string id)
         {
-            context.Customers.DeleteOneAsync(Builders<Customer>.Filter.Eq("Id", id));
+            var customer = this.CustomerRepository.GetCustomer(id);
+
+            if (customer == null) 
+            {
+                return NotFound();
+            }
+
+            this.CustomerRepository.DeleteCustomer(id);
+
+            return Ok();
         }
     }
 }

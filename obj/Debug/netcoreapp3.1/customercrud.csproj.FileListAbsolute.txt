@@ -48,3 +48,11 @@
 /home/michel/Projects/WebApi/customercrud/obj/Debug/netcoreapp3.1/customercrud.csproj.CopyComplete
 /home/michel/Projects/WebApi/customercrud/obj/Debug/netcoreapp3.1/customercrud.dll
 /home/michel/Projects/WebApi/customercrud/obj/Debug/netcoreapp3.1/customercrud.pdb
+/home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/HealthChecks.MongoDb.dll
+/home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/HealthChecks.Uris.dll
+/home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Diagnostics.HealthChecks.dll
+/home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+/home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/Microsoft.Extensions.FileProviders.Abstractions.dll
+/home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Hosting.Abstractions.dll
+/home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/Microsoft.Extensions.Http.dll
+/home/michel/Projects/WebApi/customercrud/bin/Debug/netcoreapp3.1/Newtonsoft.Json.dll
